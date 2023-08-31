@@ -26,6 +26,7 @@ func NewServer(s *http.Server, h *handler.Handler, l log.Logger) *Server {
 func (s *Server) Serve() error {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/segment", middleware.AddLogger(middleware.RequestLogger(s.HandleSegment), s.l))
+	mux.HandleFunc("/user_segment", middleware.AddLogger(middleware.RequestLogger(s.HandleSegmentToUser), s.l))
 	s.s.Handler = mux
 
 	return s.s.ListenAndServe()

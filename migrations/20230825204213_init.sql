@@ -4,7 +4,8 @@
 create table segment
 (
     id   serial primary key,
-    name varchar(255) NOT NULL
+    name varchar(255) NOT NULL,
+    CONSTRAINT segment_unique UNIQUE (name)
 );
 -- +goose StatementEnd
 

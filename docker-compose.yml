@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+
+  pgdb:
+
+    image: postgres:latest
+
+    volumes:
+    - data:/var/lib/postgresql/data
+    #restart: always
+
+    ports:
+      - 5432:5432
+
+    networks:
+      - proxy.front-network
+
+    environment:
+      POSTGRES_DB: "avito"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+
+  app:
+    ports:
+      - 8000:8000
+    restart: always
+    build:
+      dockerfile: Dockerfile
+
+    networks:
+      - proxy.front-network
+
+volumes:
+  data:
+
+networks:
+  proxy.front-network:
+    driver: bridge

@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	db, err := postgres.NewPostgres("localhost", 5432, "postgres", "postgres", "avito")
+	db, err := postgres.NewPostgres("pgdb", 5432, "postgres", "postgres", "avito")
 	if err != nil {
 		panic(err)
 	}
